@@ -14,8 +14,8 @@
     path: "{{ hubot.installation_path }}/{{ hubot.name }}"
     state: directory
     mode: 0777
-    owner: "{{ ansible_user_id }}"  
-    
+    owner: "{{ ansible_user_id }}"
+
 - name: "Install hubot app"
   git:
     repo: "{{ hubot.repo.url }}"
@@ -24,11 +24,8 @@
     update: yes
     accept_hostkey: true
   when: hubot.repo.url is defined and hubot.repo.url != None
-  
-- name: Run install commands
-  shell: "{{ item }}"
-  args:
-    chdir: "{{ hubot.installation_path }}/{{ hubot.name }}"
-  changed_when: False
-  with_items:
-    - "npm update"
+
+- name: Install packages of Hubot
+  npm:
+    path: "{{ hubot.installation_path }}/{{ hubot.name }}"
+    state: latest
