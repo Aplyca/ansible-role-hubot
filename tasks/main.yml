@@ -24,8 +24,18 @@
     update: yes
     accept_hostkey: true
   when: hubot.repo.url is defined and hubot.repo.url != None
+  notify: restart hubot  
 
 - name: Install packages of Hubot
   npm:
     path: "{{ hubot.installation_path }}/{{ hubot.name }}"
     state: latest
+  notify: restart hubot
+
+- name: Install Start/Stop script
+  become: yes
+  template:
+    src: hubot.j2
+    dest: /etc/init.d/hubot
+    mode: 0755
+  notify: restart hubot

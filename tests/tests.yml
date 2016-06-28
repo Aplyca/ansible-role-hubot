@@ -1,0 +1,5 @@
+---
+hubot:
+  adapter: slack    
+  repo:
+    url: "git@github.com:github/hubot.git"

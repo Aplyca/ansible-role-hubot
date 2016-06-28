@@ -2,6 +2,3 @@
 hubot:
   name: bot
   installation_path: /usr/local
-  repo:
-    url: "git@github.com:github/hubot.git"
-
