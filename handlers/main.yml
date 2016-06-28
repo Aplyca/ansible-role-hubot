@@ -1,0 +1,8 @@
+---
+- name: restart hubot
+  become: yes
+  service:
+    name: hubot
+    state: restarted
+    enabled: yes
+

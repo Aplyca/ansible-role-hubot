@@ -1,0 +1,34 @@
+---
+- name: Ensure reauired packages are present using apt
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - redis-server
+    - git
+
+- name: Make sure the current directory of the hubot is present
+  become: yes
+  file:
+    path: "{{ hubot.installation_path }}/{{ hubot.name }}"
+    state: directory
+    mode: 0777
+    owner: "{{ ansible_user_id }}"  
+    
+- name: "Install hubot app"
+  git:
+    repo: "{{ hubot.repo.url }}"
+    dest: "{{ hubot.installation_path }}/{{ hubot.name }}"
+    version: "{{ hubot.repo.version | default('master') }}"
+    update: yes
+    accept_hostkey: true
+  when: hubot.repo.url is defined and hubot.repo.url != None
+  
+- name: Run install commands
+  shell: "{{ item }}"
+  args:
+    chdir: "{{ hubot.installation_path }}/{{ hubot.name }}"
+  changed_when: False
+  with_items:
+    - "npm update"
