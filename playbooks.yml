@@ -1,6 +1,5 @@
 ---
 - name: Provision Hubot
   hosts: all
-  gather_facts
   roles:
     - { role: Aplyca.Hubot, tags: ["hubot"] }

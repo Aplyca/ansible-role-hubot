@@ -8,6 +8,12 @@
     - redis-server
     - git
 
+- name: Install CoffeeScript with NPM
+  become: yes
+  npm:
+    name: coffee-script
+    global: yes
+
 - name: Make sure the current directory of the hubot is present
   become: yes
   file:
@@ -24,7 +30,7 @@
     update: yes
     accept_hostkey: true
   when: hubot.repo.url is defined and hubot.repo.url != None
-  notify: restart hubot  
+  notify: restart hubot
 
 - name: Install packages of Hubot
   npm:
@@ -38,4 +44,6 @@
     src: hubot.j2
     dest: /etc/init.d/hubot
     mode: 0755
-  notify: restart hubot
+  notify:
+    - restart hubot
+    - start hubot

@@ -16,14 +16,14 @@
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 DESC="Hubot node bot"
 NAME=hubot
-USER=hubot
-GROUP=hubot
+USER={{ hubot.user }}
+GROUP=$(id -g -n {{ hubot.user }})
 BOT_PATH={{ hubot.installation_path }}/{{ hubot.name }}
 PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin:$BOT_PATH/node_modules:$BOT_PATH/node_modules/hubot/node_modules
 DAEMON=$BOT_PATH/bin/$NAME
-DAEMON_ARGS="{% if hubot.adapter is defined %}--adapter {{ hubot.adapter }} {% endif %}--name $NAME"
-PIDFILE=$BOT_PATH/$NAME.pid
-LOGFILE=$BOT_PATH/$NAME.log
+DAEMON_ARGS="{% if hubot.adapter is defined %}--adapter {{ hubot.adapter }} {% endif %}{% if hubot.server is defined and not hubot.server %}--disable-httpd {% endif %}--name $NAME"
+PIDFILE=/var/run/$NAME.pid
+LOGFILE=/var/log/$NAME.log
 SCRIPTNAME=/etc/init.d/$NAME
 INIT_VERBOSE=yes
 
