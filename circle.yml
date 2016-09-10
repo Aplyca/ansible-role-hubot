@@ -10,4 +10,4 @@ test:
   pre:
     - sudo ln -s ansible-role-hubot ../Aplyca.Hubot
   override:
-    - tests/tests.sh
+    - tests/test.sh

@@ -3,3 +3,6 @@
   hosts: all
   roles:
     - { role: Aplyca.Hubot, tags: ["hubot"] }
+  tasks:
+    - debug: var=hubot
+      tags: vars
