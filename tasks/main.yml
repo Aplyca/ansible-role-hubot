@@ -38,6 +38,13 @@
     state: latest
   notify: restart hubot
 
+- name: Add environment varaibles
+  template:
+    src: "hubot.conf.j2"
+    dest: "{{ hubot.installation_path }}/{{ hubot.name }}/hubot.conf"  
+  notify:
+    - restart hubot
+
 - name: Install Start/Stop script
   become: yes
   template:

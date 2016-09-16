@@ -1,4 +1,4 @@
 ---
-hubot: 
+hubot:
   repo:
     url: "https://github.com/github/hubot.git"

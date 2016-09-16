@@ -3,3 +3,5 @@ hubot:
   name: bot
   user: "{{ ansible_user_id }}"
   installation_path: /usr/local
+  variables: {}
+

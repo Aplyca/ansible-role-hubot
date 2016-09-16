@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+# Settings Hubot environment variables
+
+{% if hubot.variables is defined %}
+{% for variable, value in hubot.variables|dictsort(true) %}
+export {{ variable }}="{{ value }}";
+{% endfor %}
+{% endif %}
