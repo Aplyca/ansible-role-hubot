@@ -21,7 +21,7 @@ GROUP=$(id -g -n {{ hubot.user }})
 BOT_PATH={{ hubot.installation_path }}/{{ hubot.name }}
 PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin:$BOT_PATH/node_modules:$BOT_PATH/node_modules/hubot/node_modules
 DAEMON=$BOT_PATH/bin/$NAME
-DAEMON_ARGS="{% if hubot.adapter is defined %}--adapter {{ hubot.adapter }} {% endif %}{% if hubot.server is defined and not hubot.server %}--disable-httpd {% endif %}--name $NAME"
+DAEMON_ARGS="{% if hubot.adapter is defined %}--adapter {{ hubot.adapter }} {% endif %}{% if hubot.server is defined and not hubot.server %}--disable-httpd {% endif %}--name {{ hubot.name }}"
 PIDFILE=/var/run/$NAME.pid
 LOGFILE=/var/log/$NAME.log
 SCRIPTNAME=/etc/init.d/$NAME
@@ -68,7 +68,7 @@ do_stop()
 
 case "$1" in
   start)
-    [ "$VERBOSE" != no ] && log_daemon_msg "Starting $DESC" "$NAME"
+    [ "$VERBOSE" != no ] && log_daemon_msg "Starting $DESC" "{{ hubot.name }}"
     do_start
     case "$?" in
         0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
@@ -76,7 +76,7 @@ case "$1" in
     esac
     ;;
   stop)
-    [ "$VERBOSE" != no ] && log_daemon_msg "Stopping $DESC" "$NAME"
+    [ "$VERBOSE" != no ] && log_daemon_msg "Stopping $DESC" "{{ hubot.name }}"
     do_stop
     case "$?" in
         0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
@@ -87,7 +87,7 @@ case "$1" in
     status_of_proc -p $PIDFILE node $NAME && exit 0 || exit $?
     ;;
   restart|force-reload)
-    log_daemon_msg "Restarting $DESC" "$NAME"
+    log_daemon_msg "Restarting $DESC" "{{ hubot.name }}"
     do_stop
     case "$?" in
       0|1)

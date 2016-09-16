@@ -41,7 +41,8 @@
 - name: Add environment varaibles
   template:
     src: "hubot.conf.j2"
-    dest: "{{ hubot.installation_path }}/{{ hubot.name }}/hubot.conf"  
+    dest: "{{ hubot.installation_path }}/{{ hubot.name }}/hubot.conf"
+    mode: 0755
   notify:
     - restart hubot
 
