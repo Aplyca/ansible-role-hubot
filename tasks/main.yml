@@ -11,12 +11,6 @@
     - redis-server
     - git
 
-- name: Install CoffeeScript with NPM
-  become: yes
-  npm:
-    name: coffee-script
-    global: yes
-
 - name: Make sure the current directory of the hubot is present
   become: yes
   file:

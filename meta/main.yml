@@ -1,6 +1,14 @@
 ---
 dependencies:
-  - { role: Aplyca.NodeJS, tags: ["nodejs"] }   
+  - { role: Aplyca.NodeJS,
+      tags: ["nodejs"],
+      nodejs:
+        { npm:
+          { packages:
+              [ "coffee-script"]
+          }
+        }
+    }
 
 galaxy_info:
   author: Aplyca
@@ -9,11 +17,11 @@ galaxy_info:
   license: "license (BSD, MIT)"
   min_ansible_version: 1.4
   platforms:
-  - name: Debian
-    versions:
-    - all
-  - name: Ubuntu
-    versions:
-    - all
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
   categories:
     - web
