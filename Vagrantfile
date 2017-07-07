@@ -4,7 +4,7 @@ Vagrant.configure(2) do |config|
       config_machine.vm.provider :virtualbox do |virtualbox, override|
         virtualbox.name = "Vagrant Hubot"
         #override.vm.box = "chef/centos-7.0"
-	    override.vm.box = "ubuntu/trusty64"
+	    override.vm.box = "ubuntu/xenial64"
       end
 
       # Asinging a provisioner

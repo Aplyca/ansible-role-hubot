@@ -2,7 +2,7 @@
 - debug: var=hubot verbosity=1
   tags: vars
 
-- name: Ensure reauired packages are present using apt
+- name: Ensure required packages are present using apt
   become: yes
   apt:
     name: "{{ item }}"

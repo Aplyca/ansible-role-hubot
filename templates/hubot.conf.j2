@@ -3,6 +3,6 @@
 
 {% if hubot.variables is defined %}
 {% for variable, value in hubot.variables|dictsort(true) %}
-export {{ variable }}="{{ value }}";
+{{ variable }}={{ value }}
 {% endfor %}
 {% endif %}

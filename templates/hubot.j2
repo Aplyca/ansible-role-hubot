@@ -28,7 +28,9 @@ SCRIPTNAME=/etc/init.d/$NAME
 INIT_VERBOSE=yes
 
 # Read configuration variable file if it is present
+set -a
 [ -r $BOT_PATH/hubot.conf ] && . $BOT_PATH/hubot.conf
+set +a
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
