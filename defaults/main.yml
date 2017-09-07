@@ -4,4 +4,4 @@ hubot:
   user: "{{ ansible_user_id }}"
   installation_path: /usr/local
   variables: {}
-
+  system-v: False
